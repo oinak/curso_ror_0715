@@ -8,6 +8,11 @@
 </head>
 <body>
 
+
+<%= link_to_unless_current 'Inico', root_path %>
+<%= link_to_unless_current 'Acerca de', pages_about_path %>
+<%= link_to_unless_current 'Contacto', pages_contact_path %>
+
 <%= yield %>
 
 </body>
