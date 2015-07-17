@@ -5,11 +5,9 @@ one:
   url: MyString
   description: MyString
   published: false
-  timestamps: MyString
 
 two:
   title: MyString
   url: MyString
   description: MyString
   published: false
-  timestamps: MyString
