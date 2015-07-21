@@ -1,0 +1,12 @@
+
+<h1>Comentarios de: <%= @post.title %></h1>
+
+<% @post.comments.each do |comment| %>
+  <div>
+    Someone said:
+    <b>"</b><%= comment.body %><b>"</b>
+    <i>
+      <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago
+    </i>
+  </div>
+<% end %>

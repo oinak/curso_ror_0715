@@ -3,8 +3,11 @@ class CommentsController < ApplicationController
   before_action :set_post
 
   def index
-    # render text: @post.comments.map{|c| c.body }.join(',')
-    @comments = @post.comments
+    # Para probar que de llega a la accion con @post:
+    render text: @post.comments.map{|c| c.body }.join(',')
+
+    @comments = @post.comments # para la lista del each
+  end
   end
 
   private
