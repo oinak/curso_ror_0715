@@ -1,6 +1,10 @@
 
 <h1>Comentarios de: <%= @post.title %></h1>
 
+<p id="notice"><%= notice %></p>
+
+<%= render partial: 'form' %>
+
 <% @post.comments.each do |comment| %>
   <div>
     Someone said:
