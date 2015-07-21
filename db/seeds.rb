@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-Post.delete_all
+# Post.delete_all # es una llamada SQL, no llama a los hooks
+Post.destroy_all # destruye post y dependientes
 
 30.times do |n|
   post = Post.create(title:       "El enlace número #{n}",
@@ -16,4 +16,7 @@ Post.delete_all
                      published:   n.even?)
   post.created_at = n.days.ago
   post.save!
+  3.times do
+    post.comments.create!(body: "pues si que...")
+  end
 end
