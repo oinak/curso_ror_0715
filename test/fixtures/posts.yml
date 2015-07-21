@@ -11,3 +11,8 @@ two:
   url: MyString
   description: MyString
   published: false
+
+caracola:
+  title: Hola caracola
+  url: http://a.com
+  description: Mary tenía un corderito
