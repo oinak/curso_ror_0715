@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_comments_path(@post) , notice: 'Comment created!'
     else
-      @comments = @post.comments
+      @comments = @post.comments.select(&:persisted?) # omite @comment con errores
       render :index
     end
   end

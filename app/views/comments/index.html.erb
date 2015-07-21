@@ -5,7 +5,7 @@
 
 <%= render partial: 'form' %>
 
-<% @post.comments.each do |comment| %>
+<% @comments.each do |comment| %>
   <div>
     Someone said:
     <b>"</b><%= comment.body %><b>"</b>
