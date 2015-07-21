@@ -1,7 +1,7 @@
 
 <%= form_for([@post, @comment]) do |f| %>
 
-  <%= render partial: 'shared/model_errors', object: @comment %>
+  <%= render partial: 'model_errors', object: @comment %>
 
   <div class="field">
     <%= f.label :body %><br>
