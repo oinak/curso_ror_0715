@@ -4,7 +4,16 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    # 1: del scaffold
+    # @posts = Post.all
+    #
+    # Ejercicio, solo 10 publicados
+    # @posts = Post.where(published: true).limit(10)
+
+    # Ejercicio: todos o publicados segun parámetro
+    @posts = Post.limit(10).order('created_at ASC')
+    @posts = @posts.where(published: true) unless params[:all] == '1'
+
     # render template: 'app/views/posts/intex.xxx'
   end
 
