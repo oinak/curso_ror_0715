@@ -5,6 +5,10 @@
 
 <%= link_to 'Publicados', posts_path %> |
 <%= link_to 'Todos', posts_path(all: 1) %>
+-
+<% [5,10,25,50,100].each do |qty| %>
+  <%= link_to_unless_current qty, url_for(params.merge(qty: qty)) %>
+<% end %>
 
 <table>
   <thead>
