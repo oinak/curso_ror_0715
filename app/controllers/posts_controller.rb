@@ -14,8 +14,11 @@ class PostsController < ApplicationController
     # @posts = Post.limit(10).order('created_at ASC')
 
     # Ejercicio: usar includes
-    @posts = Post.includes(:comments).limit(10).order('created_at ASC')
-    @posts = @posts.where(published: true) unless params[:all] == '1'
+    # @posts = Post.includes(:comments).limit(10).order('created_at ASC')
+    # @posts = @posts.where(published: true) unless params[:all] == '1'
+
+    # Ejercicio: usar scopes
+    @posts = Post.interesting(params[:all] == '1', params[:qty])
 
     # render template: 'app/views/posts/intex.xxx'
   end

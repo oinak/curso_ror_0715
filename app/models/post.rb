@@ -24,4 +24,19 @@ class Post < ActiveRecord::Base
     where('created_at > ?', date)
   }
 
+  scope :interesting, lambda { |want_all, quantity = 10|
+    includes(:comments)
+      .published(want_all)
+      .limit(quantity)
+      .order('created_at ASC')
+  }
+
+  scope :published, lambda { |want_all|
+    if want_all
+      where({})
+    else
+      where(published: true)
+    end
+  }
+
 end
