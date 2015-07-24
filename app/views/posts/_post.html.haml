@@ -1,0 +1,19 @@
+
+.post
+  %h2= "#{post.title}"
+
+  %em= link_to post.url, post.url
+
+  %p= I18n.l post.updated_at, format: :short
+
+  - if params[:controller] == 'posts'
+    %span.post_comments= link_to_comments(post)
+    .actions
+      = link_to 'Show', post
+      |
+      = link_to 'Edit', edit_post_path(post)
+      |
+      = link_to 'Destroy', post, method: :delete,
+        data: { confirm: 'Are you sure?' }
+  -# else
+    = params.inspect

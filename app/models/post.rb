@@ -1,7 +1,9 @@
 class Post < ActiveRecord::Base
 
+  # Asociaciones
   has_many :comments
 
+  # Validaciones
   validates :title, presence: true, length: { minimum: 5 }
 
   # validates(:url, {:format => { :with => Regexp.new('https?//.*') }})
@@ -28,7 +30,8 @@ class Post < ActiveRecord::Base
     includes(:comments)
       .published(want_all)
       .limit(quantity)
-      .order('created_at ASC')
+      .order('updated_at DESC') # el último comentado 1º
+      # .order('created_at ASC')
   }
 
   scope :published, lambda { |want_all|

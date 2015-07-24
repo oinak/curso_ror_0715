@@ -10,6 +10,9 @@
   <%= link_to_unless_current qty, url_for(params.merge(qty: qty)) %>
 <% end %>
 
+<%= render @posts %>
+
+<!--
 <table>
   <thead>
     <tr>
@@ -39,6 +42,7 @@
     <% end %>
   </tbody>
 </table>
+-->
 
 <br>
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Enlazeitor</title>
+  <title>Enlazeitor<%= yield :title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield :header %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,5 +16,8 @@
 
 <%= yield %>
 
+Copyright 2015. Los Pollos Hermanos
+
+<%= yield :footer %>
 </body>
 </html>

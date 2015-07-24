@@ -1,5 +1,10 @@
-
+<% content_for :title do %>
+  <%= " - #{@post.title}" %>
+<% end %>
+<!--
 <h1>Comentarios de: <%= @post.title %></h1>
+-->
+<%= render partial: 'posts/post', object: @post %>
 
 <p id="notice"><%= notice %></p>
 
@@ -13,4 +18,7 @@
       <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago
     </i>
   </div>
+<% end %>
+<% content_for :footer do %>
+  <%= javascript_include_tag :foo %>
 <% end %>
