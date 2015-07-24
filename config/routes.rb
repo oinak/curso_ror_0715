@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     to: 'users#new', # controlador/accion a la que va
     as: :sign_up     # nombre de los helpers xxx_path y xxx_url
 
+  resources :sessions, only: [:new, :create, :destroy]
+  get    '/log_in',  to: 'sessions#new',     as: :log_in
+  delete '/log_out', to: 'sessions#destroy', as: :log_out
+
   resources :posts do
     resources :comments
   end

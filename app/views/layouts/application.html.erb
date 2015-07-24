@@ -8,11 +8,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
 
-
-<%= link_to_unless_current 'Inico', root_path %>
+<%= link_to_unless_current 'Inico', pages_home_path %>
 <%= link_to_unless_current 'Acerca de', pages_about_path %>
 <%= link_to_unless_current 'Contacto', pages_contact_path %>
+
+<div id='user_links'>
+  <% if current_user %>
+    <%= "Hola #{current_user.name}" %> |
+    <%= link_to 'Salir',
+                log_out_path,
+                method: :delete,
+                data:   { confirm: 'Are you sure?' }
+    %>
+  <% else %>
+    <%= link_to 'Regístrate', sign_up_path %> |
+    <%= link_to 'Identifícate', log_in_path %>
+  <% end %>
+</div>
+
 
 <%= yield %>
 

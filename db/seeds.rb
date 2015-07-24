@@ -9,6 +9,13 @@
 # Post.delete_all # es una llamada SQL, no llama a los hooks
 Post.destroy_all # destruye post y dependientes
 
+User.destroy_all
+
+admin = User.create!(name:                  'admin',
+                     email:                 'admin@a.es',
+                     password:              '1234',
+                     password_confirmation: '1234')
+
 30.times do |n|
   post = Post.create(title:       "El enlace número #{n}",
                      url:         "http://www.enlace#{n}.com",

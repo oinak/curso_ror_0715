@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  # no requerir un usuario para crear un usuario
+  skip_before_action :require_login, only: [:new, :create]
+
   def new
     @user = User.new
   end
