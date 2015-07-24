@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :users, only: [:new, :create]
+  get '/sign_up',    # url que se ve en la barra del navegador
+    to: 'users#new', # controlador/accion a la que va
+    as: :sign_up     # nombre de los helpers xxx_path y xxx_url
+
   resources :posts do
     resources :comments
   end
