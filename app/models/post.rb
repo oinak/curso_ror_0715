@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
 
   # Asociaciones
   has_many :comments
+  belongs_to :user, dependent: :destroy
 
   # Validaciones
   validates :title, presence: true, length: { minimum: 5 }
@@ -40,6 +41,10 @@ class Post < ActiveRecord::Base
     else
       where(published: true)
     end
+  }
+
+  scope :visible_by, lambda { |user|
+    includes(:user).where('user_id = ? OR published = ?', user, true)
   }
 
 end

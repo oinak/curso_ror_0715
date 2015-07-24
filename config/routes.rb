@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  get 'pages/home'
+  get 'pages/home'#, to: 'pages#home' , as: :pages_home
 
   get 'pages/about'
 

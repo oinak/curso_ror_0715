@@ -16,14 +16,21 @@ admin = User.create!(name:                  'admin',
                      password:              '1234',
                      password_confirmation: '1234')
 
+other = User.create!(name:                  'other',
+                     email:                 'other@a.es',
+                     password:              '1234',
+                     password_confirmation: '1234')
+
 30.times do |n|
   post = Post.create(title:       "El enlace número #{n}",
                      url:         "http://www.enlace#{n}.com",
                      description: "Lorem ipsum dolor sit amet, non sequitur",
-                     published:   n.even?)
+                     published:   n.even?,
+                     user_id:     admin.id)
   post.created_at = n.days.ago
   post.save!
   3.times do
-    post.comments.create!(body: "pues si que...")
+    post.comments.create!(body:    "pues si que...",
+                          user_id: admin.id)
   end
 end

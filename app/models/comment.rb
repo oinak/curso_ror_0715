@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
 
   # Asociaciones
   belongs_to :post, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 
   # Validaciones
   validates :body, presence: true, length: { minimum: 2 }

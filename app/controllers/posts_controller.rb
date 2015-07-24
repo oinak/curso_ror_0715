@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_editable_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:show]
 
   # GET /posts
   # GET /posts.json
@@ -18,7 +19,10 @@ class PostsController < ApplicationController
     # @posts = @posts.where(published: true) unless params[:all] == '1'
 
     # Ejercicio: usar scopes
-    @posts = Post.interesting(params[:all] == '1', params[:qty])
+    # @posts = Post.interesting(params[:all] == '1', params[:qty])
+
+    # Ejercicio: usar scopes
+    @posts = current_user.visible_posts.interesting(params[:all] == '1', params[:qty])
 
     # render template: 'app/views/posts/intex.xxx'
   end
@@ -40,7 +44,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    # @post = Post.new(post_params.merge(user_id: current_user.id))
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -79,12 +84,20 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    # solo puedo verlo si lo cree o es publico
     def set_post
-      @post = Post.find(params[:id])
+      @post = current_user.visible_posts.find(params[:id])
+    end
+
+    # solo puedo editar/borrar si lo he creado yo
+    def set_editable_post
+      @post = current_user.posts.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :url, :description, :published)
     end
+
 end
